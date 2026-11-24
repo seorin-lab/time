@@ -23,10 +23,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+            background: linear-gradient(45deg, #e3eeff 0%, #f3e7e9 99%, #f3e7e9 100%);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            padding: 20px;
+            padding: 40px 20px;
             box-sizing: border-box;
             color: var(--text-dark);
         }
@@ -39,13 +39,13 @@
 
         /* Abstract blobs in background */
         .blob {
-            position: absolute;
+            position: fixed;
             filter: blur(80px);
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0.5;
         }
-        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: #a78bfa; border-radius: 50%; }
-        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #60a5fa; border-radius: 50%; }
+        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: #60a5fa; border-radius: 50%; }
+        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #a78bfa; border-radius: 50%; }
 
         .glass-container {
             width: 100%;
