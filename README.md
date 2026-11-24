@@ -65,8 +65,8 @@
 
 ## 📣 배포 주소
 
-- 사이트
-  Vercel: https://time-frontend-gamma.vercel.app/
+- 사이트</br>
+  Vercel: https://time-frontend-gamma.vercel.app/ </br>
   GitHub Pages: https://seorin-lab.github.io/time/
 - 저장소: https://github.com/seorin-lab/time
 - 팀 프로젝트 원본 사이트: https://ai-budget-mate-web.pages.dev/
