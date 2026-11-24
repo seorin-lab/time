@@ -421,15 +421,10 @@ select:focus {
 .chatbot-fab-wrapper {
     position: fixed;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 1200px;
+    right: 24px;
     pointer-events: none;
     display: flex;
     justify-content: flex-end;
-    padding-right: 15px;
-    box-sizing: border-box;
     z-index: 998;
 }
 

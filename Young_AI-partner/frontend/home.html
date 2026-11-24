@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈 - Young-AI 파트너</title>
-    <link rel="stylesheet" href="css/style.css?v=8">
+    <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 
 <body class="home-body">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             
-            <div id="profileSummaryContainer" style="background: rgba(255,255,255,0.6); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.9); box-shadow: inset 0 2px 5px rgba(255,255,255,1), 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; gap: 15px;">
+            <div id="profileSummaryContainer" style="background: #f5f7ff; padding: 20px; border-radius: 16px; border: 1px solid #dfe5fb; box-shadow: none; display: flex; flex-direction: column; gap: 15px;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="margin: 0; font-size: 1.1rem; color: #1e293b; font-weight: 800;">내 맞춤 혜택 프로필</h3>
                     <button onclick="location.href='survey.html'" style="padding: 8px 16px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3); transition: transform 0.2s;">설정 변경하기</button>
@@ -192,7 +192,9 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/main.js?v=25" charset="utf-8"></script>
+    <!-- 카카오 지도 SDK (JavaScript 키: 등록한 사이트 도메인에서만 작동) -->
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=5663eff1186b52f98425e6936b843daf&libraries=services&autoload=false"></script>
+    <script src="js/main.js?v=28" charset="utf-8"></script>
 </body>
 
 </html>
