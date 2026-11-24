@@ -4,7 +4,8 @@
 
 팀 프로젝트, 원본: [seulkong/Young_AI-partner](https://github.com/seulkong/Young_AI-partner)
 
-🔗 **사이트 바로가기: https://seorin-lab.github.io/time/**
+🔗 **사이트 바로가기: https://time-frontend-gamma.vercel.app/**
+(GitHub Pages: https://seorin-lab.github.io/time/)
 
 ## 📣 프로젝트 소개
 
@@ -36,7 +37,7 @@
 8. Google OAuth
 9. Cloudflare Workers / Pages (팀 프로젝트 배포용)
 10. 카카오 지도 JavaScript SDK (근처 편의점 검색)
-11. GitHub Pages (포트폴리오 사이트 배포용)
+11. Vercel, GitHub Pages (포트폴리오 사이트 배포용)
 
 ## 📣 폴더 안내
 
@@ -47,7 +48,7 @@
 
 팀 프로젝트가 끝난 뒤, 포트폴리오로 공개하기 위해 직접 배포하고 아래 내용을 개선하였다.
 
-1. GitHub Pages 배포: `Young_AI-partner/frontend` 폴더만 `gh-pages` 브랜치로 분리해 https://seorin-lab.github.io/time/ 에 배포
+1. 사이트 배포: `Young_AI-partner/frontend` 폴더를 Vercel(https://time-frontend-gamma.vercel.app/)과 GitHub Pages(https://seorin-lab.github.io/time/, `gh-pages` 브랜치)에 배포
 2. 근처 편의점 검색 복구: 공개 저장소에 노출되어 비활성화된 카카오 REST API 키 대신, 등록한 도메인에서만 작동하는 카카오 지도 JavaScript SDK로 변경
 3. 첫 이용 흐름 정리: 시작하기 → 이름 입력 → 설문(소비 스타일, 편의점, 통신사, 카드, 간편결제)을 마쳐야 본 페이지로 이동하도록 수정
 4. 설정 변경 개선: '설정 변경하기'로 설문에 들어가면 기존 답이 미리 선택되도록 수정
@@ -64,6 +65,7 @@
 
 ## 📣 배포 주소
 
+- 사이트 (Vercel): https://time-frontend-gamma.vercel.app/
 - 사이트 (GitHub Pages): https://seorin-lab.github.io/time/
 - 저장소: https://github.com/seorin-lab/time
 - 팀 프로젝트 원본 사이트: https://ai-budget-mate-web.pages.dev/
