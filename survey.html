@@ -213,6 +213,14 @@
         
         <form id="surveyForm">
             <div class="survey-question">
+                <p><i data-lucide="heart" style="vertical-align: text-bottom; width: 1.1rem; height: 1.1rem; margin-right: 4px; color: var(--text-muted);"></i> 나의 편의점 소비 스타일은?</p>
+                <label><input type="radio" name="style" value="health" required> 🥗 헬시 플레저</label>
+                <label><input type="radio" name="style" value="dessert" required> 🍰 디저트 러버</label>
+                <label><input type="radio" name="style" value="brand" required> 🏪 브랜드 선호</label>
+                <label><input type="radio" name="style" value="trend" required> 🔥 신상/트렌드</label>
+            </div>
+
+            <div class="survey-question">
                 <p><i data-lucide="store" style="vertical-align: text-bottom; width: 1.1rem; height: 1.1rem; margin-right: 4px; color: var(--text-muted);"></i> 현재 <span id="userName" style="color:var(--primary);"></span>님이 자주 가는 편의점은?</p>
                 <label><input type="radio" name="store" value="GS25" required> GS25</label>
                 <label><input type="radio" name="store" value="CU" required> CU</label>
@@ -272,7 +280,7 @@
         </form>
     </div>
 
-    <script src="js/survey.js?v=5" charset="utf-8"></script>
+    <script src="js/survey.js?v=6" charset="utf-8"></script>
     <script>
         lucide.createIcons();
         // Disable submit button on form submit to prevent double clicks

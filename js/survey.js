@@ -49,17 +49,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const surveyForm = document.getElementById('surveyForm');
+
+        // 이미 저장된 답이 있으면 미리 선택해 둠 ('설정 변경하기'로 들어온 경우)
+        const checkSaved = (name, value) => {
+            if (value === undefined || value === null || value === '') return;
+            const el = surveyForm.querySelector(`input[name="${name}"][value="${value}"]`);
+            if (el) el.checked = true;
+        };
+        checkSaved('style', loggedInUser.style);
+        checkSaved('store', loggedInUser.store);
+        checkSaved('carrier', loggedInUser.carrier);
+        checkSaved('carrier_tier', loggedInUser.carrier_tier);
+        if (typeof loggedInUser.is_student_telecom === 'boolean') {
+            checkSaved('student_telecom', loggedInUser.is_student_telecom ? 'yes' : 'no');
+        }
+        (loggedInUser.payment || '').split(',').forEach(p => checkSaved('payment', p.trim()));
+        if (loggedInUser.card) {
+            if (loggedInUser.card === 'none') {
+                cardIssuerSelect.value = 'none';
+            } else {
+                const issuer = Object.keys(cardData).find(k => cardData[k].includes(loggedInUser.card));
+                if (issuer) {
+                    cardIssuerSelect.value = issuer;
+                    cardIssuerSelect.dispatchEvent(new Event('change'));
+                    cardNameSelect.value = loggedInUser.card;
+                }
+            }
+        }
+
         surveyForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             try {
+                const styleEl = surveyForm.querySelector('input[name="style"]:checked');
                 const storeEl = surveyForm.querySelector('input[name="store"]:checked');
                 const carrierEl = surveyForm.querySelector('input[name="carrier"]:checked');
                 const tierEl = surveyForm.querySelector('input[name="carrier_tier"]:checked');
                 const studentTelEl = surveyForm.querySelector('input[name="student_telecom"]:checked');
                 const paymentEls = surveyForm.querySelectorAll('input[name="payment"]:checked');
 
-                if (!storeEl || !carrierEl || !tierEl || !studentTelEl || paymentEls.length === 0) {
+                if (!styleEl || !storeEl || !carrierEl || !tierEl || !studentTelEl || paymentEls.length === 0) {
                     alert("모든 설문 항목에 답해 주세요!");
                     return;
                 }
@@ -79,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // 정보 업데이트
+                loggedInUser.style = styleEl.value;
                 loggedInUser.store = store;
                 loggedInUser.carrier = carrier;
                 loggedInUser.carrier_tier = carrier_tier;

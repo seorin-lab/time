@@ -106,16 +106,33 @@ function getUserLocation() {
 }
 
 // 근처 편의점 목록 가져오기
+// 카카오 JavaScript SDK(home.html에서 로드)의 장소 검색으로 편의점(CS2)을 찾음.
+// JavaScript 키는 카카오 디벨로퍼스에 등록한 도메인에서만 작동하므로 코드에 공개돼도 괜찮음.
+function searchNearbyConvenienceStores(latitude, longitude) {
+    return new Promise((resolve, reject) => {
+        if (!window.kakao || !window.kakao.maps) {
+            reject(new Error('카카오 지도 SDK를 불러오지 못했습니다. (JavaScript 키 또는 사이트 도메인 등록 확인)'));
+            return;
+        }
+        kakao.maps.load(() => {
+            const places = new kakao.maps.services.Places();
+            places.categorySearch('CS2', (result, status) => {
+                if (status === kakao.maps.services.Status.OK) resolve(result);
+                else if (status === kakao.maps.services.Status.ZERO_RESULT) resolve([]);
+                else reject(new Error('카카오 장소 검색 실패: ' + status));
+            }, {
+                location: new kakao.maps.LatLng(latitude, longitude),
+                radius: 1000,
+                sort: kakao.maps.services.SortBy.DISTANCE
+            });
+        });
+    });
+}
+
 async function fetchNearbyStores(latitude, longitude) {
-    const REST_API_KEY = '28927acb4f3229bf2bddf11261cc6ff3';
     try {
-        const url = `https://dapi.kakao.com/v2/local/search/category.json?category_group_code=CS2&x=${longitude}&y=${latitude}&radius=1000&sort=distance`;
-        const response = await fetch(url, { headers: { 'Authorization': `KakaoAK ${REST_API_KEY}` } });
-        
-        if (!response.ok) throw new Error('API 요청 실패');
-        
-        const data = await response.json();
-        
+        const data = { documents: await searchNearbyConvenienceStores(latitude, longitude) };
+
         const gs25List = document.getElementById('gs25-list');
         const cuList = document.getElementById('cu-list');
         if (gs25List) gs25List.innerHTML = '';
@@ -1027,7 +1044,7 @@ window.updateProfileSummary = function() {
         const userStyleText = styleMap[loggedInUser.style] || '선택 안함';
         const userStoreText = (loggedInUser.store && loggedInUser.store !== 'none') ? loggedInUser.store : '선택 안함';
         const userCardText = (loggedInUser.card && loggedInUser.card !== 'none') ? loggedInUser.card : '선택 안함';
-        const userTelecomText = (loggedInUser.telecom && loggedInUser.telecom !== 'none') ? loggedInUser.telecom : '선택 안함';
+        const userTelecomText = (loggedInUser.carrier && loggedInUser.carrier !== 'none') ? loggedInUser.carrier : '알뜰폰 / 해당 없음';
         
         let tagsHTML = '';
         tagsHTML += `<span style="background: white; border: 1px solid #cbd5e1; padding: 4px 10px; border-radius: 8px; color: #475569;">편의점: <strong>${userStoreText}</strong></span>`;
@@ -1040,7 +1057,7 @@ window.updateProfileSummary = function() {
             const paymentStr = loggedInUser.payment.split(',').map(p => payMap[p.trim()] || p.trim()).join(', ');
             tagsHTML += `<span style="background: white; border: 1px solid #cbd5e1; padding: 4px 10px; border-radius: 8px; color: #475569;">간편결제: <strong>${paymentStr}</strong></span>`;
         }
-        if(loggedInUser.student_telecom === 'yes') {
+        if(loggedInUser.is_student_telecom === true) {
             tagsHTML += `<span style="background: #eef2ff; border: 1px solid #818cf8; padding: 4px 10px; border-radius: 8px; color: #4338ca;">🎓 대학생 전용 요금제</span>`;
         }
         
@@ -1062,7 +1079,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     const loggedInUser = JSON.parse(loggedInUserStr);
-    
+
+    // 설문을 끝내지 않았다면 설문 페이지로 먼저 보냄
+    if (!loggedInUser.style || !loggedInUser.store || !loggedInUser.carrier) {
+        window.location.replace('survey.html');
+        return;
+    }
+
     // 헤더 업데이트
     const userNameEl = document.getElementById('homeUserName');
     if (userNameEl) userNameEl.textContent = loggedInUser.name;
