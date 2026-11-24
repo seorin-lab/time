@@ -4,6 +4,8 @@
 
 팀 프로젝트, 원본: [seulkong/Young_AI-partner](https://github.com/seulkong/Young_AI-partner)
 
+🔗 **사이트 바로가기: https://seorin-lab.github.io/time/**
+
 ## 📣 프로젝트 소개
 
 대학생이 편의점에서 받을 수 있는 행사(1+1, 2+1), 통신사 멤버십, 카드 할인을 한 번에 계산해 주는 AI 소비 추천 웹사이트이다.
@@ -46,6 +48,6 @@
 
 ## 📣 배포 주소
 
-https://github.com/seorin-lab/time
-
-https://ai-budget-mate-web.pages.dev/
+- 사이트 (GitHub Pages): https://seorin-lab.github.io/time/
+- 저장소: https://github.com/seorin-lab/time
+- 팀 프로젝트 원본 사이트: https://ai-budget-mate-web.pages.dev/
