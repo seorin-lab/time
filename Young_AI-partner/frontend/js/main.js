@@ -917,7 +917,7 @@ function renderCurationCards(userStyle) {
             let priceText = item.price ? (typeof item.price === 'number' ? item.price.toLocaleString() + '원' : item.price) : '가격 변동';
             let imageHtml = item.img;
             if (typeof imageHtml === 'string' && imageHtml.includes('<svg')) {
-                imageHtml = `<div style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border-radius: 12px; color: #adb5bd; font-size: 0.8rem; font-weight: bold; border: 1px dashed #dee2e6; margin: 0 auto;">NO IMAGE</div>`;
+                imageHtml = `<div style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #eef2ff, #f5f3ff); border-radius: 16px; margin: 0 auto;">${imageHtml}</div>`;
             }
 
             div.innerHTML = `
@@ -1013,7 +1013,7 @@ function fallbackCurationCards(userStyle, list, userStore = 'none') {
 
         let imageHtml = item.img;
         if (typeof imageHtml === 'string' && imageHtml.includes('<svg')) {
-            imageHtml = `<div style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border-radius: 12px; color: #adb5bd; font-size: 0.8rem; font-weight: bold; border: 1px dashed #dee2e6; margin: 0 auto;">NO IMAGE</div>`;
+            imageHtml = `<div style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #eef2ff, #f5f3ff); border-radius: 16px; margin: 0 auto;">${imageHtml}</div>`;
         }
 
         div.innerHTML = `
